@@ -1,9 +1,15 @@
 import React from 'react';
 import './App.css';
+import StarWarsPage from './pages/StarWarsPage';
 
 function App() {
   return (
-    <span>Hello, App!</span>
+    <>
+      <h1>
+        Star Wars Trybe
+      </h1>
+      <StarWarsPage />
+    </>
   );
 }
 
