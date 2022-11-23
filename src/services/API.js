@@ -5,9 +5,13 @@ const getData = async () => {
     const datas = await response.json();
     // console.log(datas);
     const data = datas.results;
-    delete data.residents;
+    const info = data.map((el) => {
+      delete el.residents;
+      return el;
+    });
+    delete info.residents;
     // console.log(data);
-    return data;
+    return info;
   } catch (error) {
     throw new Error(error);
   }
