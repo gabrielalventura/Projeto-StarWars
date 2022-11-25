@@ -38,20 +38,17 @@ function Table() {
       numerics.forEach((el) => {
         if (el.operatorFilter === 'maior que') {
           planets = planets.filter(
-            (planet) => (Number(planet[el.columnFilter] !== 'unknown')
-            && Number(planet[el.columnFilter]) > Number(el.valueFilter)),
+            (planet) => (Number(planet[el.columnFilter]) > Number(el.valueFilter)),
           );
         }
         if (el.operatorFilter === 'menor que') {
           planets = planets.filter(
-            (planet) => (Number(planet[el.columnFilter] !== 'unknown'))
-            && Number(planet[el.columnFilter]) < Number(el.valueFilter),
+            (planet) => (Number(planet[el.columnFilter]) < Number(el.valueFilter)),
           );
         }
         if (el.operatorFilter === 'igual a') {
           planets = planets.filter(
-            (planet) => (Number(planet[el.columnFilter] !== 'unknown')
-            && Number(planet[el.columnFilter]) === Number(el.valueFilter)),
+            (planet) => (Number(planet[el.columnFilter]) === Number(el.valueFilter)),
           );
         }
       });
