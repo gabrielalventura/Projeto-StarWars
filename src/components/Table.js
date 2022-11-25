@@ -15,6 +15,7 @@ function Table() {
     valueFilter: '0',
   });
   const [numerics, setNumerics] = useState([]);
+  const [uniqueFilter, setUniqueFilter] = useState(columnElements);
 
   const handleInput = (event) => {
     setFilters({ ...filters, [event.target.name]: event.target.value });
@@ -22,6 +23,8 @@ function Table() {
 
   const filterClick = () => {
     setNumerics([...numerics, filters]);
+    const filtering = uniqueFilter.filter((option) => option !== filters.columnFilter);
+    setUniqueFilter(filtering);
   };
   // console.log(numerics);
 
@@ -52,11 +55,11 @@ function Table() {
           );
         }
       });
-
+      setFilters({ ...filters, columnFilter: uniqueFilter[0] });
       setFilteredData(planets);
     };
     filtered();
-  }, [data, dataByName, numerics]); // trecho de código desenvolvido sob mentoria de Jaider Nunes
+  }, [data, dataByName, numerics, uniqueFilter]); // trecho de código desenvolvido sob mentoria de Jaider Nunes
 
   return (
     <div>
@@ -83,7 +86,7 @@ function Table() {
             onChange={ handleInput }
           >
             {
-              columnElements.map((el) => (
+              uniqueFilter.map((el) => (
                 <option key={ el }>{el}</option>
               ))
             }
