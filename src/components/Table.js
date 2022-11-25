@@ -3,6 +3,10 @@ import StarWarsContext from '../context/StarWarsContext';
 
 function Table() {
   const { data } = useContext(StarWarsContext);
+
+  const columnElements = ['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water'];
+
   const [dataByName, setDataByName] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [filters, setFilters] = useState({
@@ -19,7 +23,7 @@ function Table() {
   const filterClick = () => {
     setNumerics([...numerics, filters]);
   };
-  console.log(numerics);
+  // console.log(numerics);
 
   useEffect(() => {
     const filtered = () => {
@@ -78,11 +82,11 @@ function Table() {
             value={ filters.columnFilter }
             onChange={ handleInput }
           >
-            <option>population</option>
-            <option>orbital_period</option>
-            <option>diameter</option>
-            <option>rotation_period</option>
-            <option>surface_water</option>
+            {
+              columnElements.map((el) => (
+                <option key={ el }>{el}</option>
+              ))
+            }
           </select>
         </label>
         <label
