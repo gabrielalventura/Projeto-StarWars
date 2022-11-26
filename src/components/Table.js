@@ -68,7 +68,7 @@ function Table() {
 
   const deleteAll = () => {
     setNumerics([]);
-    setUniqueFilter(columnElements);
+    setUniqueFilter([]);
   };
 
   return (
