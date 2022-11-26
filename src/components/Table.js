@@ -58,6 +58,19 @@ function Table() {
     filtered();
   }, [data, dataByName, numerics, uniqueFilter]); // trecho de código desenvolvido sob mentoria de Jaider Nunes
 
+  const deleteOne = (event) => {
+    const changedNumerics = numerics.filter((e) => (
+      e.columnFilter !== event.target.id
+    ));
+    setUniqueFilter([...uniqueFilter, event.target.id]);
+    setNumerics(changedNumerics);
+  };
+
+  const deleteAll = () => {
+    setNumerics([]);
+    setUniqueFilter(columnElements);
+  };
+
   return (
     <div>
       <form>
@@ -127,12 +140,30 @@ function Table() {
         <div>
           {
             numerics.map((el, index) => (
-              <p key={ `${el.columnFilter}-${index}` }>
+              <p
+                key={ `${el.columnFilter}-button${el.operatorFilter}` }
+                data-testid="filter"
+              >
                 {`${el.columnFilter} 
                 ${el.operatorFilter} ${el.valueFilter}`}
+                <button
+                  type="button"
+                  key={ `${el.columnFilter}-${index}` }
+                  id={ el.columnFilter }
+                  onClick={ deleteOne }
+                >
+                  X
+                </button>
               </p>
             ))
           }
+          <button
+            type="button"
+            data-testid="button-remove-filters"
+            onClick={ deleteAll }
+          >
+            Remover Filtros
+          </button>
         </div>
       </form>
       <table>
